@@ -1,6 +1,21 @@
+import { useState } from 'react';
+
 import '../styles/App.scss';
 
+
 function App() {
+
+  const [failure, setFailure] = useState(0); // hombrecito
+
+  const [userLetter, setUserLetter] = useState(''); // valor - imput 
+
+  let failedLetters = [] 
+
+  let answer = []
+
+
+
+
   return (
     <div className="page">
       <header>
