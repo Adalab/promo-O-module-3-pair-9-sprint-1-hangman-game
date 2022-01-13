@@ -7,9 +7,11 @@ function App() {
   const [lastLetter, setlastLetter] = useState(''); // ultima letra del input
   const [failure, setFailure] = useState(0); // hombrecito
   const [failedLetters, setfailedLetters] = useState(0); // letras falladas
-  const [correctLetters, setCorrectLetters] = useState(0); // letras falladas
+  const [correctLetters, setCorrectLetters] = useState(0); // letras correctas
   
-  let answer = 'katakroker'
+  let answer = 'katakroker' // utilizar funcion split (divide una cadena de texto en una tabla de subcadenas)
+  // despues se podria utilizar un find
+  // hacer pequeñas funiones para despues llamarlas en la "handleLastLetter"
   
   const handleLastLetter = (event) => {
     const newValue = event.currentTarget.value
@@ -25,12 +27,9 @@ function App() {
 
   
 
- 
-
   const handleTry = (event) => {
     //answer.contains(event.currentTarget.value)
   } */
-
 
 
   return (
