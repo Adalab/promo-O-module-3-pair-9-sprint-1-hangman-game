@@ -4,15 +4,32 @@ import '../styles/App.scss';
 
 
 function App() {
-
+  const [lastLetter, setlastLetter] = useState(''); // ultima letra del input
   const [failure, setFailure] = useState(0); // hombrecito
+  const [failedLetters, setfailedLetters] = useState(0); // letras falladas
+  const [correctLetters, setCorrectLetters] = useState(0); // letras falladas
+  
+  let answer = 'katakroker'
+  
+  const handleLastLetter = (event) => {
+    const newValue = event.currentTarget.value
+    console.log(newValue)
+    setlastLetter(newValue)
+    //const userTry =
+    console.log(answer.includes(newValue)) // esto meterlo en un if
+  }
 
-  const [userLetter, setUserLetter] = useState(''); // valor - imput 
+  
 
-  let failedLetters = [] 
+/*   let failedLetters = [] 
 
-  let answer = []
+  
 
+ 
+
+  const handleTry = (event) => {
+    //answer.contains(event.currentTarget.value)
+  } */
 
 
 
@@ -57,6 +74,8 @@ function App() {
               type="text"
               name="last-letter"
               id="last-letter"
+              value={lastLetter}
+              onChange={handleLastLetter}
             />
           </form>
         </section>
@@ -76,6 +95,7 @@ function App() {
           <span className="error-1 line"></span>
         </section>
       </main>
+      <div>Letra metida: {lastLetter}</div>
     </div>
   );
 }
