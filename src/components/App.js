@@ -2,35 +2,30 @@ import { useState } from 'react';
 
 import '../styles/App.scss';
 
+let answer = 'katakroker';
+const answerArray = answer.split(''); // utilizar funcion split (divide una cadena de texto en una tabla de subcadenas)
+// despues se podria utilizar un find
+// hacer pequeñas funiones para despues llamarlas en la "handleLastLetter"
 
 function App() {
   const [lastLetter, setlastLetter] = useState(''); // ultima letra del input
   const [failure, setFailure] = useState(0); // hombrecito
-  const [failedLetters, setfailedLetters] = useState(0); // letras falladas
-  const [correctLetters, setCorrectLetters] = useState(0); // letras correctas
-  
-  let answer = 'katakroker' // utilizar funcion split (divide una cadena de texto en una tabla de subcadenas)
-  // despues se podria utilizar un find
-  // hacer pequeñas funiones para despues llamarlas en la "handleLastLetter"
-  
+  const [failedLetters, setFailedLetters] = useState([]); // letras falladas
+  const [correctLetters, setCorrectLetters] = useState([]); // letras correctas
+
   const handleLastLetter = (event) => {
-    const newValue = event.currentTarget.value
-    console.log(newValue)
-    setlastLetter(newValue)
-    //const userTry =
-    console.log(answer.includes(newValue)) // esto meterlo en un if
-  }
-
-  
-
-/*   let failedLetters = [] 
-
-  
-
-  const handleTry = (event) => {
-    //answer.contains(event.currentTarget.value)
-  } */
-
+    const newValue = event.currentTarget.value;
+    //console.log(newValue)
+    setlastLetter(newValue);
+    //console.log(answerArray.includes(newValue)) // esto meterlo en un if
+    return answerArray
+      .filter((eachAnswer) => eachAnswer.includes(newValue))
+      .map((eachAnswer) => {
+        return eachAnswer
+          ? setCorrectLetters([eachAnswer])
+          : setFailedLetters([eachAnswer]);
+      });
+  };
 
   return (
     <div className="page">
@@ -65,7 +60,9 @@ function App() {
             </ul>
           </div>
           <form className="form">
-            <label className="title" htmlFor="last-letter">Escribe una letra:</label>
+            <label className="title" htmlFor="last-letter">
+              Escribe una letra:
+            </label>
             <input
               autoComplete="off"
               className="form__input"
@@ -95,6 +92,8 @@ function App() {
         </section>
       </main>
       <div>Letra metida: {lastLetter}</div>
+      <div>FALLOS: {failedLetters}</div>
+      <div>CORRECTAS: {correctLetters}</div>
     </div>
   );
 }
