@@ -18,11 +18,11 @@ function App() {
     //console.log(newValue)
     setlastLetter(newValue);
     //console.log(answerArray.includes(newValue)) // esto meterlo en un if
-    return answerArray
+    return answerArray //esto no, hay que hacer un if y no filter ni map
       .filter((eachAnswer) => eachAnswer.includes(newValue))
       .map((eachAnswer) => {
         return eachAnswer
-          ? setCorrectLetters([eachAnswer])
+          ? setCorrectLetters([...correctLetters, newValue])
           : setFailedLetters([eachAnswer]);
       });
   };
